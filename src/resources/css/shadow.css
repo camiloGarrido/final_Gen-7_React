@@ -1,3 +1,21 @@
 body {
-  background-color: red;
+  background: rgb(255, 178, 178);
+  background: linear-gradient(
+    0deg,
+    rgba(255, 178, 178, 1) 0%,
+    rgba(255, 0, 0, 1) 100%
+  );
+  min-height: 100vh;
+}
+.link {
+  color: black;
+  margin-right: 10px;
+  text-decoration: none;
+}
+
+.w-100 {
+  width: 100% !important;
+}
+.text-center {
+  text-align: center;
 }
