@@ -7,6 +7,7 @@ import Header from "./component/Header";
 import Pokemon from "./view/pokemones/Pokemon";
 import PokemonDetail from "./view/pokemones/PokemonDetail";
 import { Container } from "@mui/material";
+import Bayas from "./view/bayas/Bayas";
 
 const App = () => {
   return (
@@ -16,6 +17,7 @@ const App = () => {
         <Switch>
           <Route exact path="/" component={Home} />
           <Route exact path="/pokemones" component={Pokemon} />
+          <Route exact path="/berrys" component={Bayas} />
           <Route exact path="/pokemon/:id" component={PokemonDetail} />
           <Route path="*" component={NotFound} />
         </Switch>
