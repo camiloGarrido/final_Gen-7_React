@@ -8,6 +8,9 @@ const SkeletonDinamic = (props) => {
       <Skeleton variant="circular" width={40} height={40} />
       <Skeleton variant="rectangular" height={118} />
       <Skeleton variant="text" />
+      <Skeleton variant="text" />
+      <Skeleton variant="text" />
+      <Skeleton variant="text" />
     </Stack>
   );
 };

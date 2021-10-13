@@ -1,7 +1,16 @@
-import { Card, Grid, Typography, CardContent, Divider } from "@mui/material";
+import {
+  Card,
+  Grid,
+  Typography,
+  CardContent,
+  CardHeader,
+  IconButton,
+} from "@mui/material";
 import React, { useEffect, useState } from "react";
 import { getPokemonDetail } from "../../api/pokemon";
 import SkeletonDinamic from "../../component/SkeletonDinamic";
+import ArrowBackIcon from "@mui/icons-material/ArrowBack";
+import { Link } from "react-router-dom";
 
 const PokemonDetail = (props) => {
   const id = props.match.params.id;
@@ -41,30 +50,79 @@ const PokemonDetail = (props) => {
     <>
       <Grid container>
         <Grid item xs={12}>
+          <Link to="/pokemones">
+            <IconButton>
+              <ArrowBackIcon />
+            </IconButton>
+          </Link>
+
           <h1>Detalles del Pokemon</h1>
         </Grid>
       </Grid>
       {pokemon ? (
         <Grid container spacing={2}>
-          <Grid item xs={12} md={4}>
+          <Grid item xs={12}>
             <Card>
-              <CardContent>
-                <Typography>Nombre</Typography>
-                <Typography variant="h6">{pokemon.name}</Typography>
-                <Divider />
-                <Typography>Peso</Typography>
-                <Typography variant="h6">{pokemon.weight}</Typography>
-                <Divider />
-                <Typography>Altura</Typography>
-                <Typography variant="h6">{pokemon.height}</Typography>
-                <Divider />
+              <CardHeader title="Imagenes" />
+              <CardContent className="text-center">
+                {getImgPokemon()}
               </CardContent>
             </Card>
           </Grid>
-          <Grid item xs={12} md={8}>
+          <Grid item xs={12} md={4}>
             <Card>
-              <CardContent className="text-center">
-                {getImgPokemon()}
+              <CardContent>
+                <Typography variant="h6">Nombre</Typography>
+                <Typography>{pokemon.name}</Typography>
+              </CardContent>
+            </Card>
+          </Grid>
+          <Grid item xs={12} md={4}>
+            <Card>
+              <CardContent>
+                <Typography variant="h6">ID</Typography>
+                <Typography>{pokemon.id}</Typography>
+              </CardContent>
+            </Card>
+          </Grid>
+          <Grid item xs={12} md={4}>
+            <Card>
+              <CardContent>
+                <Typography variant="h6">Peso</Typography>
+                <Typography>{pokemon.weight}</Typography>
+              </CardContent>
+            </Card>
+          </Grid>
+          <Grid item xs={12} md={4}>
+            <Card>
+              <CardContent>
+                <Typography variant="h6">Altura</Typography>
+                <Typography>{pokemon.height}</Typography>
+              </CardContent>
+            </Card>
+          </Grid>
+          <Grid item xs={12} md={4}>
+            <Card>
+              <CardContent>
+                <Typography variant="h6">Experiencia base</Typography>
+                <Typography>{pokemon.base_experience}</Typography>
+              </CardContent>
+            </Card>
+          </Grid>
+          <Grid item xs={12} md={4}>
+            <Card>
+              <CardContent>
+                <Typography variant="h6">Tipo</Typography>
+                <Typography>
+                  {pokemon.types.map((item) => {
+                    console.log(item);
+                    return (
+                      <span style={{ marginRight: "5px" }} key={item.slot}>
+                        {item.type.name}
+                      </span>
+                    );
+                  })}
+                </Typography>
               </CardContent>
             </Card>
           </Grid>

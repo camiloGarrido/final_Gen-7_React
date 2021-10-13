@@ -7,6 +7,8 @@ import {
   ListItem,
   ListItemButton,
   Pagination,
+  Card,
+  CardContent,
 } from "@mui/material";
 
 const Pokemon = () => {
@@ -34,29 +36,65 @@ const Pokemon = () => {
   };
 
   return (
-    <Grid container>
+    <Grid container spacing={2}>
       <Grid item xs={12}>
-        <h1>Pokemon List</h1>
+        <h1>Lista de Pokemones</h1>
       </Grid>
-      <Grid item xs={12} md={6}>
-        <List>
-          {listPokemon.map((item, i) => {
-            //https://pokeapi.co/api/v2/pokemon/10199/
-            let url =
-              "/pokemon/" + item.url.split("/")[item.url.split("/").length - 2];
-            //console.log(item.url.split("/").length, url);
-            return (
-              <ListItem key={i} component="div" disablePadding>
-                <ListItemButton>
-                  <Link className="w-100" to={url}>
-                    {item.name}
-                  </Link>
-                </ListItemButton>
-              </ListItem>
-            );
-          })}
-        </List>
-        <Pagination count={28} onChange={changeListValue} />
+      <Grid item xs={12}>
+        <Card style={{ marginTop: "10px", marginBottom: "10px" }}>
+          <CardContent>
+            <Pagination
+              style={{
+                margin: "auto",
+                display: "flex",
+                justifyContent: "center",
+              }}
+              count={28}
+              onChange={changeListValue}
+            />
+          </CardContent>
+        </Card>
+      </Grid>
+      <Grid item xs={12} md={6} style={{ margin: "auto" }}>
+        <Card>
+          <List>
+            {listPokemon.map((item, i) => {
+              //https://pokeapi.co/api/v2/pokemon/10199/
+              let url =
+                "/pokemon/" +
+                item.url.split("/")[item.url.split("/").length - 2];
+              //console.log(item.url.split("/").length, url);
+              return (
+                <ListItem key={i} component="div" disablePadding>
+                  <ListItemButton style={{ textAlign: "center" }}>
+                    <Link
+                      className="w-100"
+                      to={url}
+                      style={{ color: "#000", textDecoration: "none" }}
+                    >
+                      {item.name}
+                    </Link>
+                  </ListItemButton>
+                </ListItem>
+              );
+            })}
+          </List>
+        </Card>
+      </Grid>
+      <Grid item xs={12}>
+        <Card style={{ marginTop: "10px", marginBottom: "10px" }}>
+          <CardContent>
+            <Pagination
+              style={{
+                margin: "auto",
+                display: "flex",
+                justifyContent: "center",
+              }}
+              count={28}
+              onChange={changeListValue}
+            />
+          </CardContent>
+        </Card>
       </Grid>
     </Grid>
   );
