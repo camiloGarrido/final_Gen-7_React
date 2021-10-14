@@ -1,13 +1,15 @@
 import React from "react";
 import "./App.css";
 import { Route, Switch } from "react-router";
+import { Container } from "@mui/material";
 import Home from "./view/home/Home";
 import NotFound from "./view/notFound/NotFound";
 import Header from "./component/Header";
 import Pokemon from "./view/pokemones/Pokemon";
 import PokemonDetail from "./view/pokemones/PokemonDetail";
-import { Container } from "@mui/material";
 import Bayas from "./view/bayas/Bayas";
+import Attack from "./view/attack/Attack";
+import BayasDetail from "./view/bayas/BayasDetail";
 
 const App = () => {
   return (
@@ -18,6 +20,8 @@ const App = () => {
           <Route exact path="/" component={Home} />
           <Route exact path="/pokemones" component={Pokemon} />
           <Route exact path="/berrys" component={Bayas} />
+          <Route exact path="/berrys/:id" component={BayasDetail} />
+          <Route exact path="/attack" component={Attack} />
           <Route exact path="/pokemon/:id" component={PokemonDetail} />
           <Route path="*" component={NotFound} />
         </Switch>

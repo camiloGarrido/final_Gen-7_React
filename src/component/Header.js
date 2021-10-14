@@ -24,6 +24,9 @@ const Header = () => {
           <Link className="link" to="/berrys">
             Bayas
           </Link>
+          <Link className="link" to="/attack">
+            Ataques
+          </Link>
         </div>
       </AppBar>
     </Box>
