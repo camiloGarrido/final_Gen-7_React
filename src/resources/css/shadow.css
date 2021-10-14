@@ -19,3 +19,11 @@ body {
 .text-center {
   text-align: center;
 }
+.btn-primary {
+  padding: 5px 20px;
+  background: red;
+  border-radius: 5px;
+  border-color: red;
+  color: white;
+  cursor: pointer;
+}
