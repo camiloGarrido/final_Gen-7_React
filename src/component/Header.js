@@ -27,6 +27,9 @@ const Header = () => {
           <Link className="link" to="/attack">
             Ataques
           </Link>
+          <Link className="link" to="/pokeballs">
+            Pokeballs
+          </Link>
         </div>
       </AppBar>
     </Box>

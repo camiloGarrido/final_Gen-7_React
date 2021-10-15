@@ -3,6 +3,7 @@ import { Grid } from "@mui/material";
 import imgPokemon from "./../../resources/img/pikachu.gif";
 import imgBaya from "./../../resources/img/baya.gif";
 import imgAtaque from "./../../resources/img/ataques.gif";
+import imgPokeball from "./../../resources/img/pokeball.gif";
 import CardImage from "../../component/CardImage";
 
 const Home = () => {
@@ -33,6 +34,14 @@ const Home = () => {
           link="/attack"
           title="Ataques"
           parrafo="Sección para visualizar los ataques disponibles"
+        />
+      </Grid>
+      <Grid item xs={12}>
+        <CardImage
+          img={imgPokeball}
+          link="/pokeballs"
+          title="pokeball"
+          parrafo="Sección para visualizar una lista con las pokeball´s disponibles en los diferentes juegos"
         />
       </Grid>
     </Grid>

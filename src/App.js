@@ -10,6 +10,8 @@ import PokemonDetail from "./view/pokemones/PokemonDetail";
 import Bayas from "./view/bayas/Bayas";
 import Attack from "./view/attack/Attack";
 import BayasDetail from "./view/bayas/BayasDetail";
+import Pokeballs from "./view/pokeball/Pokeballs";
+import PokeballDetail from "./view/pokeball/PokeballDetail";
 
 const App = () => {
   return (
@@ -19,6 +21,8 @@ const App = () => {
         <Switch>
           <Route exact path="/" component={Home} />
           <Route exact path="/pokemones" component={Pokemon} />
+          <Route exact path="/pokeballs" component={Pokeballs} />
+          <Route exact path="/pokeball/:id" component={PokeballDetail} />
           <Route exact path="/berrys" component={Bayas} />
           <Route exact path="/berrys/:id" component={BayasDetail} />
           <Route exact path="/attack" component={Attack} />
