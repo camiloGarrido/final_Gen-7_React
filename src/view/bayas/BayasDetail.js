@@ -1,3 +1,6 @@
+import React, { useEffect, useState } from "react";
+import { getBayasId } from "../../api/bayas";
+
 import {
   Card,
   Grid,
@@ -6,74 +9,47 @@ import {
   CardHeader,
   IconButton,
 } from "@mui/material";
-import React, { useEffect, useState } from "react";
-import { getPokemonDetail } from "../../api/pokemon";
 import SkeletonDinamic from "../../component/SkeletonDinamic";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import { Link } from "react-router-dom";
 
-const PokemonDetail = (props) => {
+const BayasDetail = (props) => {
   const id = props.match.params.id;
-  const [pokemon, setPokemon] = useState(null);
+  const [berry, setBerry] = useState(null);
   const [error, setError] = useState(false);
 
   useEffect(() => {
-    getPokemonDetail(id)
+    getBayasId(id)
       .then((data) => {
         if (error) {
           setError(false);
         }
-        setPokemon(data);
+        setBerry(data);
         console.log(data);
       })
       .catch((x) => setError(true));
   }, []);
 
-  const getImgPokemon = () => {
-    let img = [];
-    let i = 0;
-
-    for (const imgPoke in pokemon.sprites) {
-      if (
-        pokemon.sprites[imgPoke] &&
-        "other" !== imgPoke &&
-        "versions" !== imgPoke
-      ) {
-        img.push(<img key={i} src={pokemon.sprites[imgPoke]} alt={imgPoke} />);
-        i++;
-      }
-    }
-    return img.map((x) => x);
-  };
-
   return (
     <>
       <Grid container>
         <Grid item xs={12}>
-          <Link to="/pokemones">
+          <Link to="/berrys">
             <IconButton>
               <ArrowBackIcon />
             </IconButton>
           </Link>
 
-          <h1>Detalles del Pokemon</h1>
+          <h1>Detalles de la baya</h1>
         </Grid>
       </Grid>
-      {pokemon ? (
+      {berry ? (
         <Grid container spacing={2}>
-          <Grid item xs={12}>
-            <Card>
-              <CardHeader title="Imagenes" />
-              <CardContent className="text-center">
-                {getImgPokemon()}
-              </CardContent>
-            </Card>
-          </Grid>
           <Grid item xs={12} md={4}>
             <Card>
               <CardContent>
                 <Typography variant="h6">Nombre</Typography>
-                <Typography>{pokemon.name}</Typography>
+                <Typography>{berry.name}</Typography>
               </CardContent>
             </Card>
           </Grid>
@@ -81,48 +57,39 @@ const PokemonDetail = (props) => {
             <Card>
               <CardContent>
                 <Typography variant="h6">ID</Typography>
-                <Typography>{pokemon.id}</Typography>
+                <Typography>{berry.id}</Typography>
               </CardContent>
             </Card>
           </Grid>
           <Grid item xs={12} md={4}>
             <Card>
               <CardContent>
-                <Typography variant="h6">Peso</Typography>
-                <Typography>{pokemon.weight}</Typography>
+                <Typography variant="h6">Tamaño</Typography>
+                <Typography>{berry.size}</Typography>
               </CardContent>
             </Card>
           </Grid>
           <Grid item xs={12} md={4}>
             <Card>
               <CardContent>
-                <Typography variant="h6">Altura</Typography>
-                <Typography>{pokemon.height}</Typography>
+                <Typography variant="h6">suavidad</Typography>
+                <Typography>{berry.smoothness}</Typography>
               </CardContent>
             </Card>
           </Grid>
           <Grid item xs={12} md={4}>
             <Card>
               <CardContent>
-                <Typography variant="h6">Experiencia base</Typography>
-                <Typography>{pokemon.base_experience}</Typography>
+                <Typography variant="h6">Firmeza</Typography>
+                <Typography>{berry.firmness.name}</Typography>
               </CardContent>
             </Card>
           </Grid>
           <Grid item xs={12} md={4}>
             <Card>
               <CardContent>
-                <Typography variant="h6">Tipo</Typography>
-                <Typography>
-                  {pokemon.types.map((item) => {
-                    console.log(item);
-                    return (
-                      <span style={{ marginRight: "5px" }} key={item.slot}>
-                        {item.type.name}
-                      </span>
-                    );
-                  })}
-                </Typography>
+                <Typography variant="h6">Poder de regalo natural</Typography>
+                <Typography>{berry.natural_gift_power}</Typography>
               </CardContent>
             </Card>
           </Grid>
@@ -137,4 +104,5 @@ const PokemonDetail = (props) => {
     </>
   );
 };
-export default PokemonDetail;
+
+export default BayasDetail;

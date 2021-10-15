@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from "react";
-import { useHistory } from "react-router";
-import { getPokemon } from "../../api/pokemon";
+import { getbayas } from "../../api/bayas";
 import { Grid, CardHeader, Pagination, Card, CardContent } from "@mui/material";
+import { useHistory } from "react-router";
 
-const Pokemon = () => {
-  const [listPokemon, setListPokemon] = useState([]);
+const Bayas = () => {
+  const [listBerrys, setListBerrys] = useState([]);
   const [initialList, setInitialList] = useState(0);
+  const endList = 19;
   const history = useHistory();
 
   useEffect(() => {
@@ -14,9 +15,9 @@ const Pokemon = () => {
 
   const getDataPokemon = (valueActual) => {
     setInitialList(valueActual);
-    getPokemon(valueActual).then((data) => {
+    getbayas(valueActual, endList).then((data) => {
       console.log(data);
-      setListPokemon(data.results);
+      setListBerrys(data.results);
     });
   };
 
@@ -37,9 +38,10 @@ const Pokemon = () => {
       <Grid item xs={12}>
         <h1>Lista de Pokemones</h1>
       </Grid>
-      {listPokemon.map((item, i) => {
+
+      {listBerrys.map((item, i) => {
         let url =
-          "/pokemon/" + item.url.split("/")[item.url.split("/").length - 2];
+          "/berrys/" + item.url.split("/")[item.url.split("/").length - 2];
         return (
           <Grid key={i} item xs={12} sm={6} md={4}>
             <Card>
@@ -52,6 +54,7 @@ const Pokemon = () => {
           </Grid>
         );
       })}
+
       <Grid item xs={12}>
         <Card style={{ marginTop: "10px", marginBottom: "10px" }}>
           <CardContent>
@@ -61,7 +64,7 @@ const Pokemon = () => {
                 display: "flex",
                 justifyContent: "center",
               }}
-              count={38}
+              count={3}
               onChange={changeListValue}
             />
           </CardContent>
@@ -70,4 +73,5 @@ const Pokemon = () => {
     </Grid>
   );
 };
-export default Pokemon;
+
+export default Bayas;

@@ -1,22 +1,31 @@
 import React, { useEffect, useState } from "react";
+import {
+  Grid,
+  List,
+  ListItem,
+  ListItemButton,
+  Card,
+  CardHeader,
+  CardContent,
+  Pagination,
+} from "@mui/material";
+import { getAttackData } from "../../api/attack";
 import { useHistory } from "react-router";
-import { getPokemon } from "../../api/pokemon";
-import { Grid, CardHeader, Pagination, Card, CardContent } from "@mui/material";
 
-const Pokemon = () => {
-  const [listPokemon, setListPokemon] = useState([]);
+const Attack = () => {
+  const [listAttack, setListAttack] = useState([]);
   const [initialList, setInitialList] = useState(0);
   const history = useHistory();
 
   useEffect(() => {
-    getDataPokemon(0);
+    getListAttack(0);
   }, []);
 
-  const getDataPokemon = (valueActual) => {
+  const getListAttack = (valueActual) => {
     setInitialList(valueActual);
-    getPokemon(valueActual).then((data) => {
+    getAttackData(valueActual).then((data) => {
       console.log(data);
-      setListPokemon(data.results);
+      setListAttack(data.results);
     });
   };
 
@@ -24,7 +33,8 @@ const Pokemon = () => {
     if (!value) return;
     let valueActual = (value - 1) * 30;
     if (initialList === valueActual) return;
-    getDataPokemon(valueActual);
+    getListAttack(valueActual);
+    console.log(valueActual);
   };
 
   const redirection = (url) => {
@@ -35,14 +45,15 @@ const Pokemon = () => {
   return (
     <Grid container spacing={2}>
       <Grid item xs={12}>
-        <h1>Lista de Pokemones</h1>
+        <h1>Movimientos de pokemones</h1>
       </Grid>
-      {listPokemon.map((item, i) => {
+
+      {listAttack.map((item, i) => {
         let url =
-          "/pokemon/" + item.url.split("/")[item.url.split("/").length - 2];
+          "/attack/" + item.url.split("/")[item.url.split("/").length - 2];
         return (
           <Grid key={i} item xs={12} sm={6} md={4}>
-            <Card>
+            <Card style={{ marginTop: "10px" }}>
               <CardHeader
                 onClick={() => redirection(url)}
                 title={item.name}
@@ -61,7 +72,7 @@ const Pokemon = () => {
                 display: "flex",
                 justifyContent: "center",
               }}
-              count={38}
+              count={29}
               onChange={changeListValue}
             />
           </CardContent>
@@ -70,4 +81,5 @@ const Pokemon = () => {
     </Grid>
   );
 };
-export default Pokemon;
+
+export default Attack;

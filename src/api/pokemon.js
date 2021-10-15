@@ -1,6 +1,6 @@
-export function getPokemon(start, end) {
+export function getPokemon(start) {
   return fetch(
-    "https://pokeapi.co/api/v2/pokemon?offset=" + start + "&limit=" + end
+    "https://pokeapi.co/api/v2/pokemon?offset=" + start + "&limit=30"
   )
     .then((response) => response.json())
     .then((data) => data);
