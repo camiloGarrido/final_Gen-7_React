@@ -12,19 +12,20 @@ import {
 import SkeletonDinamic from "../../component/SkeletonDinamic";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import { Link } from "react-router-dom";
+import { getAttackDataId } from "../../api/attack";
 
-const BayasDetail = (props) => {
+const AttackDetail = (props) => {
   const id = props.match.params.id;
-  const [berry, setBerry] = useState(null);
+  const [move, setMove] = useState(null);
   const [error, setError] = useState(false);
 
   useEffect(() => {
-    getBayasId(id)
+    getAttackDataId(id)
       .then((data) => {
         if (error) {
           setError(false);
         }
-        setBerry(data);
+        setMove(data);
         console.log(data);
       })
       .catch((x) => setError(true));
@@ -34,22 +35,22 @@ const BayasDetail = (props) => {
     <>
       <Grid container>
         <Grid item xs={12}>
-          <Link to="/berrys">
+          <Link to="/attack">
             <IconButton>
               <ArrowBackIcon />
             </IconButton>
           </Link>
 
-          <h1>Detalles de la baya</h1>
+          <h1>Movimiento Pokemon</h1>
         </Grid>
       </Grid>
-      {berry ? (
+      {move ? (
         <Grid container spacing={2}>
           <Grid item xs={12} md={4}>
             <Card>
               <CardContent>
                 <Typography variant="h6">Nombre</Typography>
-                <Typography>{berry.name}</Typography>
+                <Typography>{move.name}</Typography>
               </CardContent>
             </Card>
           </Grid>
@@ -57,45 +58,51 @@ const BayasDetail = (props) => {
             <Card>
               <CardContent>
                 <Typography variant="h6">ID</Typography>
-                <Typography>{berry.id}</Typography>
+                <Typography>{move.id}</Typography>
               </CardContent>
             </Card>
           </Grid>
           <Grid item xs={12} md={4}>
             <Card>
               <CardContent>
-                <Typography variant="h6">Tamaño</Typography>
-                <Typography>{berry.size}</Typography>
+                <Typography variant="h6">Clase de daño</Typography>
+                <Typography>{move.damage_class.name}</Typography>
               </CardContent>
             </Card>
           </Grid>
           <Grid item xs={12} md={4}>
             <Card>
               <CardContent>
-                <Typography variant="h6">suavidad</Typography>
-                <Typography>{berry.smoothness}</Typography>
+                <Typography variant="h6">Tipo</Typography>
+                <Typography>{move.type.name}</Typography>
               </CardContent>
             </Card>
           </Grid>
           <Grid item xs={12} md={4}>
             <Card>
               <CardContent>
-                <Typography variant="h6">Firmeza</Typography>
-                <Typography>{berry.firmness.name}</Typography>
+                <Typography variant="h6">Precisión</Typography>
+                <Typography>{move.accuracy}</Typography>
               </CardContent>
             </Card>
           </Grid>
           <Grid item xs={12} md={4}>
             <Card>
               <CardContent>
-                <Typography variant="h6">Poder de regalo natural</Typography>
-                <Typography>{berry.natural_gift_power}</Typography>
+                <Typography variant="h6">Poder</Typography>
+                <Typography>{move.power}</Typography>
+              </CardContent>
+            </Card>
+          </Grid>
+          <Grid item xs={12} md={4}>
+            <Card>
+              <CardContent>
+                <Typography variant="h6">PP</Typography>
+                <Typography>{move.pp}</Typography>
               </CardContent>
             </Card>
           </Grid>
         </Grid>
-      ) : error ? (
-        <h2>Error</h2>
       ) : (
         <Grid item xs={12}>
           <SkeletonDinamic />
@@ -105,4 +112,4 @@ const BayasDetail = (props) => {
   );
 };
 
-export default BayasDetail;
+export default AttackDetail;

@@ -27,3 +27,12 @@ body {
   color: white;
   cursor: pointer;
 }
+.headerCard {
+  transition: 200ms;
+}
+.headerCard:hover {
+  background: red;
+  color: #fff;
+  transition: 200ms;
+  cursor: pointer;
+}

@@ -1,5 +1,5 @@
 export function getbayas(offset) {
-  return fetch("https://pokeapi.co/api/v2/berry?offset=" + offset + "&limit=20")
+  return fetch("https://pokeapi.co/api/v2/berry?offset=" + offset + "&limit=30")
     .then((response) => response.json())
     .then((data) => data);
 }

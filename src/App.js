@@ -12,6 +12,7 @@ import Attack from "./view/attack/Attack";
 import BayasDetail from "./view/bayas/BayasDetail";
 import Pokeballs from "./view/pokeball/Pokeballs";
 import PokeballDetail from "./view/pokeball/PokeballDetail";
+import AttackDetail from "./view/attack/AttackDetail";
 
 const App = () => {
   return (
@@ -26,6 +27,7 @@ const App = () => {
           <Route exact path="/berrys" component={Bayas} />
           <Route exact path="/berrys/:id" component={BayasDetail} />
           <Route exact path="/attack" component={Attack} />
+          <Route exact path="/attack/:id" component={AttackDetail} />
           <Route exact path="/pokemon/:id" component={PokemonDetail} />
           <Route path="*" component={NotFound} />
         </Switch>

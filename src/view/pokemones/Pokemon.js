@@ -1,28 +1,20 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { useHistory } from "react-router";
 import { getPokemon } from "../../api/pokemon";
-import {
-  Grid,
-  List,
-  ListItem,
-  ListItemButton,
-  Pagination,
-  Card,
-  CardContent,
-} from "@mui/material";
+import { Grid, CardHeader, Pagination, Card, CardContent } from "@mui/material";
 
 const Pokemon = () => {
   const [listPokemon, setListPokemon] = useState([]);
   const [initialList, setInitialList] = useState(0);
-  const endList = 39;
+  const history = useHistory();
 
   useEffect(() => {
-    getDataPokemon(0, 39);
+    getDataPokemon(0);
   }, []);
 
   const getDataPokemon = (valueActual) => {
     setInitialList(valueActual);
-    getPokemon(valueActual, endList).then((data) => {
+    getPokemon(valueActual).then((data) => {
       console.log(data);
       setListPokemon(data.results);
     });
@@ -30,9 +22,14 @@ const Pokemon = () => {
 
   const changeListValue = (event, value) => {
     if (!value) return;
-    let valueActual = (value - 1) * 40;
+    let valueActual = (value - 1) * 30;
     if (initialList === valueActual) return;
     getDataPokemon(valueActual);
+  };
+
+  const redirection = (url) => {
+    console.log(url, "url");
+    history.push(url);
   };
 
   return (
@@ -40,6 +37,21 @@ const Pokemon = () => {
       <Grid item xs={12}>
         <h1>Lista de Pokemones</h1>
       </Grid>
+      {listPokemon.map((item, i) => {
+        let url =
+          "/pokemon/" + item.url.split("/")[item.url.split("/").length - 2];
+        return (
+          <Grid key={i} item xs={12} sm={6} md={4}>
+            <Card>
+              <CardHeader
+                onClick={() => redirection(url)}
+                title={item.name}
+                className="headerCard"
+              />
+            </Card>
+          </Grid>
+        );
+      })}
       <Grid item xs={12}>
         <Card style={{ marginTop: "10px", marginBottom: "10px" }}>
           <CardContent>
@@ -49,48 +61,7 @@ const Pokemon = () => {
                 display: "flex",
                 justifyContent: "center",
               }}
-              count={28}
-              onChange={changeListValue}
-            />
-          </CardContent>
-        </Card>
-      </Grid>
-      <Grid item xs={12} md={6} style={{ margin: "auto" }}>
-        <Card>
-          <List>
-            {listPokemon.map((item, i) => {
-              //https://pokeapi.co/api/v2/pokemon/10199/
-              let url =
-                "/pokemon/" +
-                item.url.split("/")[item.url.split("/").length - 2];
-              //console.log(item.url.split("/").length, url);
-              return (
-                <ListItem key={i} component="div" disablePadding>
-                  <ListItemButton style={{ textAlign: "center" }}>
-                    <Link
-                      className="w-100"
-                      to={url}
-                      style={{ color: "#000", textDecoration: "none" }}
-                    >
-                      {item.name}
-                    </Link>
-                  </ListItemButton>
-                </ListItem>
-              );
-            })}
-          </List>
-        </Card>
-      </Grid>
-      <Grid item xs={12}>
-        <Card style={{ marginTop: "10px", marginBottom: "10px" }}>
-          <CardContent>
-            <Pagination
-              style={{
-                margin: "auto",
-                display: "flex",
-                justifyContent: "center",
-              }}
-              count={28}
+              count={38}
               onChange={changeListValue}
             />
           </CardContent>
