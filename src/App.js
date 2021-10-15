@@ -32,6 +32,8 @@ const App = () => {
           <Route path="*" component={NotFound} />
         </Switch>
       </Container>
+      <div className="divFooter"></div>
+      <footer>ShadowLine R</footer>
     </>
   );
 };
