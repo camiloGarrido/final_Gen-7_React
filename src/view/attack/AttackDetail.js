@@ -13,6 +13,7 @@ import SkeletonDinamic from "../../component/SkeletonDinamic";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import { Link } from "react-router-dom";
 import { getAttackDataId } from "../../api/attack";
+import CardContentDetail from "../../component/CardContentDetail";
 
 const AttackDetail = (props) => {
   const id = props.match.params.id;
@@ -45,62 +46,16 @@ const AttackDetail = (props) => {
       </Grid>
       {move ? (
         <Grid container spacing={2}>
-          <Grid item xs={12} md={4}>
-            <Card>
-              <CardContent>
-                <Typography variant="h6">Nombre</Typography>
-                <Typography>{move.name}</Typography>
-              </CardContent>
-            </Card>
-          </Grid>
-          <Grid item xs={12} md={4}>
-            <Card>
-              <CardContent>
-                <Typography variant="h6">ID</Typography>
-                <Typography>{move.id}</Typography>
-              </CardContent>
-            </Card>
-          </Grid>
-          <Grid item xs={12} md={4}>
-            <Card>
-              <CardContent>
-                <Typography variant="h6">Clase de daño</Typography>
-                <Typography>{move.damage_class.name}</Typography>
-              </CardContent>
-            </Card>
-          </Grid>
-          <Grid item xs={12} md={4}>
-            <Card>
-              <CardContent>
-                <Typography variant="h6">Tipo</Typography>
-                <Typography>{move.type.name}</Typography>
-              </CardContent>
-            </Card>
-          </Grid>
-          <Grid item xs={12} md={4}>
-            <Card>
-              <CardContent>
-                <Typography variant="h6">Precisión</Typography>
-                <Typography>{move.accuracy}</Typography>
-              </CardContent>
-            </Card>
-          </Grid>
-          <Grid item xs={12} md={4}>
-            <Card>
-              <CardContent>
-                <Typography variant="h6">Poder</Typography>
-                <Typography>{move.power}</Typography>
-              </CardContent>
-            </Card>
-          </Grid>
-          <Grid item xs={12} md={4}>
-            <Card>
-              <CardContent>
-                <Typography variant="h6">PP</Typography>
-                <Typography>{move.pp}</Typography>
-              </CardContent>
-            </Card>
-          </Grid>
+          <CardContentDetail title="Nombre" desc={move.name} />
+          <CardContentDetail title="ID" desc={move.id} />
+          <CardContentDetail
+            title="Clase de daño"
+            desc={move.damage_class.name}
+          />
+          <CardContentDetail title="Tipo" desc={move.type.name} />
+          <CardContentDetail title="Precisión" desc={move.accuracy} />
+          <CardContentDetail title="Poder" desc={move.type.name} />
+          <CardContentDetail title="PP" desc={move.pp} />
         </Grid>
       ) : (
         <Grid item xs={12}>

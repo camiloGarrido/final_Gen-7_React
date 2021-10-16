@@ -48,7 +48,7 @@ const Pokeballs = () => {
   return (
     <Grid container spacing={2}>
       <Grid item xs={12}>
-        <h1>Categorias de Pokeball</h1>
+        <h1>Categorías de Pokeball</h1>
       </Grid>
       {categoryPokeball.map((item, i) => {
         return (

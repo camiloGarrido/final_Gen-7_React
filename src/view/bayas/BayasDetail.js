@@ -12,6 +12,7 @@ import {
 import SkeletonDinamic from "../../component/SkeletonDinamic";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import { Link } from "react-router-dom";
+import CardContentDetail from "../../component/CardContentDetail";
 
 const BayasDetail = (props) => {
   const id = props.match.params.id;
@@ -44,54 +45,15 @@ const BayasDetail = (props) => {
       </Grid>
       {berry ? (
         <Grid container spacing={2}>
-          <Grid item xs={12} md={4}>
-            <Card>
-              <CardContent>
-                <Typography variant="h6">Nombre</Typography>
-                <Typography>{berry.name}</Typography>
-              </CardContent>
-            </Card>
-          </Grid>
-          <Grid item xs={12} md={4}>
-            <Card>
-              <CardContent>
-                <Typography variant="h6">ID</Typography>
-                <Typography>{berry.id}</Typography>
-              </CardContent>
-            </Card>
-          </Grid>
-          <Grid item xs={12} md={4}>
-            <Card>
-              <CardContent>
-                <Typography variant="h6">Tamaño</Typography>
-                <Typography>{berry.size}</Typography>
-              </CardContent>
-            </Card>
-          </Grid>
-          <Grid item xs={12} md={4}>
-            <Card>
-              <CardContent>
-                <Typography variant="h6">suavidad</Typography>
-                <Typography>{berry.smoothness}</Typography>
-              </CardContent>
-            </Card>
-          </Grid>
-          <Grid item xs={12} md={4}>
-            <Card>
-              <CardContent>
-                <Typography variant="h6">Firmeza</Typography>
-                <Typography>{berry.firmness.name}</Typography>
-              </CardContent>
-            </Card>
-          </Grid>
-          <Grid item xs={12} md={4}>
-            <Card>
-              <CardContent>
-                <Typography variant="h6">Poder de regalo natural</Typography>
-                <Typography>{berry.natural_gift_power}</Typography>
-              </CardContent>
-            </Card>
-          </Grid>
+          <CardContentDetail title="Nombre" desc={berry.name} />
+          <CardContentDetail title="ID" desc={berry.id} />
+          <CardContentDetail title="Tamaño" desc={berry.size} />
+          <CardContentDetail title="Suavidad" desc={berry.smoothness} />
+          <CardContentDetail title="Firmeza" desc={berry.firmness.name} />
+          <CardContentDetail
+            title="Poder de regalo natural"
+            desc={berry.natural_gift_power}
+          />
         </Grid>
       ) : error ? (
         <h2>Error</h2>

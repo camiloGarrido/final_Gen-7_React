@@ -34,7 +34,7 @@ const Bayas = () => {
   return (
     <Grid container spacing={2}>
       <Grid item xs={12}>
-        <h1>Lista de Pokemones</h1>
+        <h1>Lista de Bayas</h1>
       </Grid>
 
       {listBerrys.map((item, i) => {
