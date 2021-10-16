@@ -4,6 +4,8 @@ import { getPokeballDetail } from "../../api/pokeball";
 import SkeletonDinamic from "../../component/SkeletonDinamic";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import { Link } from "react-router-dom";
+import CardContentDetail from "../../component/CardContentDetail";
+import CardContentDetailImg from "../../component/CardContentDetailImg";
 
 const PokeballDetail = (props) => {
   const id = props.match.params.id;
@@ -33,71 +35,22 @@ const PokeballDetail = (props) => {
       </Grid>
       {pokeball ? (
         <Grid container spacing={2}>
-          <Grid item xs={12} md={4}>
-            <Card>
-              <CardContent>
-                <Typography variant="h6">Nombre</Typography>
-                <Typography>{pokeball.name}</Typography>
-              </CardContent>
-            </Card>
-          </Grid>
-          <Grid item xs={12} md={4}>
-            <Card>
-              <CardContent>
-                <Typography variant="h6">ID</Typography>
-                <Typography>{pokeball.id}</Typography>
-              </CardContent>
-            </Card>
-          </Grid>
-          <Grid item xs={12} md={4}>
-            <Card>
-              <CardContent>
-                <Typography variant="h6">Categoria</Typography>
-                <Typography>{pokeball.category.name}</Typography>
-              </CardContent>
-            </Card>
-          </Grid>
-
-          <Grid item xs={12} md={4}>
-            <Card>
-              <CardContent>
-                <Typography variant="h6">Descripción</Typography>
-                <Typography>
-                  {
-                    pokeball.flavor_text_entries.filter(
-                      (item) => item.language.name === "es"
-                    )[0].text
-                  }
-                </Typography>
-              </CardContent>
-            </Card>
-          </Grid>
-          <Grid item xs={12} md={4}>
-            <Card>
-              <CardContent>
-                <Typography variant="h6">Imagen</Typography>
-                <img src={pokeball.sprites.default} alt={pokeball.name} />
-              </CardContent>
-            </Card>
-          </Grid>
-
-          {/* <Grid item xs={12} md={4}>
-        <Card>
-          <CardContent>
-            <Typography variant="h6">Tipo</Typography>
-            <Typography>
-              {pokemon.types.map((item) => {
-                console.log(item);
-                return (
-                  <span style={{ marginRight: "5px" }} key={item.slot}>
-                    {item.type.name}
-                  </span>
-                );
-              })}
-            </Typography>
-          </CardContent>
-        </Card>
-      </Grid> */}
+          <CardContentDetail title="Nombre" desc={pokeball.name} />
+          <CardContentDetail title="ID" desc={pokeball.id} />
+          <CardContentDetail title="Categoria" desc={pokeball.category.name} />
+          <CardContentDetail
+            title="Descripción"
+            desc={
+              pokeball.flavor_text_entries.filter(
+                (item) => item.language.name === "es"
+              )[0].text
+            }
+          />
+          <CardContentDetailImg
+            title="Imagen"
+            url={pokeball.sprites.default}
+            titleUrl={pokeball.name}
+          />
         </Grid>
       ) : (
         <Grid item xs={12}>

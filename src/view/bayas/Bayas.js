@@ -16,7 +16,6 @@ const Bayas = () => {
   const getDataPokemon = (valueActual) => {
     setInitialList(valueActual);
     getbayas(valueActual, endList).then((data) => {
-      console.log(data);
       setListBerrys(data.results);
     });
   };
@@ -29,14 +28,13 @@ const Bayas = () => {
   };
 
   const redirection = (url) => {
-    console.log(url, "url");
     history.push(url);
   };
 
   return (
     <Grid container spacing={2}>
       <Grid item xs={12}>
-        <h1>Lista de Pokemones</h1>
+        <h1>Lista de Bayas</h1>
       </Grid>
 
       {listBerrys.map((item, i) => {

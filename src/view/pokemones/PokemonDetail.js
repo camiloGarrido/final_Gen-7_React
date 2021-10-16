@@ -24,7 +24,6 @@ const PokemonDetail = (props) => {
           setError(false);
         }
         setPokemon(data);
-        console.log(data);
       })
       .catch((x) => setError(true));
   }, []);
@@ -115,7 +114,6 @@ const PokemonDetail = (props) => {
                 <Typography variant="h6">Tipo</Typography>
                 <Typography>
                   {pokemon.types.map((item) => {
-                    console.log(item);
                     return (
                       <span style={{ marginRight: "5px" }} key={item.slot}>
                         {item.type.name}

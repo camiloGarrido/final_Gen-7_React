@@ -1,9 +1,9 @@
 import React from "react";
 import { Card, CardContent, CardMedia, Box } from "@mui/material";
 import { useHistory } from "react-router-dom";
+import PropTypes from "prop-types";
 
-const CardImage = (props) => {
-  const { img, link, title, parrafo } = props;
+const CardImage = ({ img, link, title, parrafo }) => {
   let history = useHistory();
   const redirection = (url) => {
     history.push(url);
@@ -28,6 +28,13 @@ const CardImage = (props) => {
       </Box>
     </Card>
   );
+};
+
+CardImage.propTypes = {
+  img: PropTypes.string,
+  link: PropTypes.string,
+  title: PropTypes.string,
+  parrafo: PropTypes.string,
 };
 
 export default CardImage;

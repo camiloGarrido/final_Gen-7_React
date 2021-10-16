@@ -18,40 +18,37 @@ const Pokeballs = () => {
   const history = useHistory();
 
   useEffect(() => {
-    async function getAllData() {
-      let data = await getCategory().then();
-      console.log(data);
-      setCategoryPokeball(data);
-    }
-    getAllData();
+    getCategory();
   }, []);
 
-  const getCategory = async () => {
+  const getCategory = () => {
     let dataReturn = [];
-    await getPokeballCategory().then(async (data) => {
+    getPokeballCategory().then((data) => {
       for (let i = 0; i < data.categories.length; i++) {
         let item = data.categories[i];
-        await getPokeballCategoryDetail(item.url).then((detail) => {
+        let f = data.categories.length - 1;
+        getPokeballCategoryDetail(item.url).then((detail) => {
           dataReturn[i] = {
             url: item.url,
             name: item.name,
             items: detail.items,
           };
+          if (i === f) {
+            setCategoryPokeball(dataReturn);
+          }
         });
       }
     });
-    return dataReturn;
   };
 
   const redirection = (url) => {
-    console.log(url, "url");
     history.push(url);
   };
 
   return (
     <Grid container spacing={2}>
       <Grid item xs={12}>
-        <h1>Categorias de Pokeball</h1>
+        <h1>Categorías de Pokeball</h1>
       </Grid>
       {categoryPokeball.map((item, i) => {
         return (
