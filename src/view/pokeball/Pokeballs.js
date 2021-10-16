@@ -18,29 +18,28 @@ const Pokeballs = () => {
   const history = useHistory();
 
   useEffect(() => {
-    async function getAllData() {
-      let data = await getCategory().then();
-      console.log(data);
-      setCategoryPokeball(data);
-    }
-    getAllData();
+    getCategory();
   }, []);
 
-  const getCategory = async () => {
+  const getCategory = () => {
     let dataReturn = [];
-    await getPokeballCategory().then(async (data) => {
+    getPokeballCategory().then((data) => {
       for (let i = 0; i < data.categories.length; i++) {
         let item = data.categories[i];
-        await getPokeballCategoryDetail(item.url).then((detail) => {
+        let f = data.categories.length - 1;
+        getPokeballCategoryDetail(item.url).then((detail) => {
           dataReturn[i] = {
             url: item.url,
             name: item.name,
             items: detail.items,
           };
+          console.log(dataReturn);
+          if (i === f) {
+            setCategoryPokeball(dataReturn);
+          }
         });
       }
     });
-    return dataReturn;
   };
 
   const redirection = (url) => {
