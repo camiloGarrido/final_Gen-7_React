@@ -33,7 +33,6 @@ const Pokeballs = () => {
             name: item.name,
             items: detail.items,
           };
-          console.log(dataReturn);
           if (i === f) {
             setCategoryPokeball(dataReturn);
           }
@@ -43,7 +42,6 @@ const Pokeballs = () => {
   };
 
   const redirection = (url) => {
-    console.log(url, "url");
     history.push(url);
   };
 

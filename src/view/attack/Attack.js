@@ -24,7 +24,6 @@ const Attack = () => {
   const getListAttack = (valueActual) => {
     setInitialList(valueActual);
     getAttackData(valueActual).then((data) => {
-      console.log(data);
       setListAttack(data.results);
     });
   };
@@ -34,11 +33,9 @@ const Attack = () => {
     let valueActual = (value - 1) * 30;
     if (initialList === valueActual) return;
     getListAttack(valueActual);
-    console.log(valueActual);
   };
 
   const redirection = (url) => {
-    console.log(url, "url");
     history.push(url);
   };
 

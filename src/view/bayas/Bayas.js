@@ -16,7 +16,6 @@ const Bayas = () => {
   const getDataPokemon = (valueActual) => {
     setInitialList(valueActual);
     getbayas(valueActual, endList).then((data) => {
-      console.log(data);
       setListBerrys(data.results);
     });
   };
@@ -29,7 +28,6 @@ const Bayas = () => {
   };
 
   const redirection = (url) => {
-    console.log(url, "url");
     history.push(url);
   };
 

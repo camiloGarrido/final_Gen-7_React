@@ -26,7 +26,6 @@ const AttackDetail = (props) => {
           setError(false);
         }
         setMove(data);
-        console.log(data);
       })
       .catch((x) => setError(true));
   }, []);

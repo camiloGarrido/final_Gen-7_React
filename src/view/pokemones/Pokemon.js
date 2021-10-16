@@ -15,7 +15,6 @@ const Pokemon = () => {
   const getDataPokemon = (valueActual) => {
     setInitialList(valueActual);
     getPokemon(valueActual).then((data) => {
-      console.log(data);
       setListPokemon(data.results);
     });
   };
@@ -28,7 +27,6 @@ const Pokemon = () => {
   };
 
   const redirection = (url) => {
-    console.log(url, "url");
     history.push(url);
   };
 

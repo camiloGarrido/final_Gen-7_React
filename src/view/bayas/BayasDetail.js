@@ -25,7 +25,6 @@ const BayasDetail = (props) => {
           setError(false);
         }
         setBerry(data);
-        console.log(data);
       })
       .catch((x) => setError(true));
   }, []);
